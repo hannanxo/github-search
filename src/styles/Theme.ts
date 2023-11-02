@@ -14,8 +14,3 @@ export const themes: Record<"light" | "dark", ThemeInterface> = {
     textColor: "#ffffff",
   },
 };
-
-export const getInitialTheme = (): "light" | "dark" => {
-  const savedTheme = localStorage.getItem("theme") as "light" | "dark";
-  return savedTheme || "light";
-};

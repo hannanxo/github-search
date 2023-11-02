@@ -1,18 +1,20 @@
 "use client";
-import React, { useEffect, useState, ReactNode } from "react";
-import { ThemeInterface, getInitialTheme, themes } from "../styles/Theme";
+import React, { useEffect, useState } from "react";
+import { ThemeInterface, themes } from "../styles/Theme";
 import styled from "@emotion/styled";
 import ThemeToggle from "@/components/ThemeToggle";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { PropsInterface } from "@/types/PropsTypes";
+import { getInitialTheme } from "@/hooks/useTheme";
+
+const queryClient = new QueryClient();
 
 const ThemedBody = styled.body<{ theme: ThemeInterface }>`
   background-color: ${(props) => props.theme.backgroundColor};
   color: ${(props) => props.theme.textColor};
 `;
 
-interface LayoutProps {
-  children: ReactNode;
-}
-const RootLayout: React.FC<LayoutProps> = ({ children }) => {
+const RootLayout: React.FC<PropsInterface> = ({ children }) => {
   // after getting the intial theme its used as a key to access the corresponding theme obj
   const [theme, setTheme] = useState<ThemeInterface>(themes[getInitialTheme()]);
 
@@ -26,10 +28,12 @@ const RootLayout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <html lang="en">
-      <ThemedBody theme={theme}>
-        {children}
-        <ThemeToggle toggleTheme={toggleTheme} />
-      </ThemedBody>
+      <QueryClientProvider client={queryClient}>
+        <ThemedBody theme={theme}>
+          {children}
+          <ThemeToggle toggleTheme={toggleTheme} />
+        </ThemedBody>
+      </QueryClientProvider>
     </html>
   );
 };
