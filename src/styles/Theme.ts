@@ -1,16 +1,7 @@
-export interface ThemeInterface {
-  backgroundColor: string;
-  textColor: string;
-}
+import type { ThemeConfig } from "antd";
 
-//
-export const themes: Record<"light" | "dark", ThemeInterface> = {
-  light: {
-    backgroundColor: "#ffffff",
-    textColor: "#000000",
-  },
-  dark: {
-    backgroundColor: "#333333",
-    textColor: "#ffffff",
-  },
+const themeConfig: ThemeConfig = {
+  token: { borderRadius: 0 },
 };
+
+export default themeConfig;
