@@ -1,0 +1,16 @@
+.header-wrapper {
+  padding: 0;
+  background: none;
+}
+
+.text-one {
+  line-height: 80%;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.text-two {
+  font-weight: 100;
+  font-size: 14px;
+  color: gray;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col, Input, Select } from "antd";
+import "../styles/SearchInput.css";
 
 const { Option } = Select;
 
@@ -17,7 +18,7 @@ const SearchInput = ({
   return (
     <Row gutter={[20, 10]}>
       <Col span={18}>
-        <Input style={{ padding: "4.5px 11px" }} placeholder="Start typing to search .." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+        <Input className="input-field" placeholder="Start typing to search .." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
       </Col>
       <Col span={3}>
         <Select defaultValue={searchType} onChange={(value) => setSearchType(value)}>

@@ -2,6 +2,7 @@
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import StyledComponentsRegistry from "../lib/AntdRegistry";
+import "./global.css";
 
 const queryClient = new QueryClient();
 
@@ -14,7 +15,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => (
       <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
     </head>
-    <body style={{ margin: 0, padding: 0 }}>
+    <body className="layout-main-wrapper">
       <QueryClientProvider client={queryClient}>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </QueryClientProvider>
