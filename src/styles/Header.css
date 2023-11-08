@@ -1,6 +1,9 @@
 .header-wrapper {
-  padding: 0;
+  padding: 0 !important;
+  margin-bottom: 0;
   background: none;
+  margin-right: 24px;
+  margin-bottom: -6px;
 }
 
 .text-one {
@@ -13,4 +16,5 @@
   font-weight: 100;
   font-size: 14px;
   color: gray;
+  margin: 4px 0 0 0;
 }

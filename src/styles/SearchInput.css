@@ -1,3 +1,6 @@
 .input-field {
-  padding: 4.5px 11px;
+}
+
+.dropdown {
+  padding: 0 !important;
 }

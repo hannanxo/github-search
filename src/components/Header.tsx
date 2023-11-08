@@ -9,8 +9,8 @@ const Header = ({ darkMode, setDarkMode }: { darkMode: boolean; setDarkMode: Rea
   const { Header } = Layout;
 
   return (
-    <Row gutter={[20, 12]}>
-      <Col>{darkMode ? <Image src={DarkLogo} alt="" width={45} height={45} /> : <Image src={LightLogo} alt="" width={45} height={45} />}</Col>
+    <Row gutter={[20, 12]} className="header-wrapper">
+      <Col>{darkMode ? <Image src={DarkLogo} alt="" width={35} height={35} /> : <Image src={LightLogo} alt="" width={35} height={35} />}</Col>
       <Header className="header-wrapper">
         <Flex>
           <span className="text-one">
