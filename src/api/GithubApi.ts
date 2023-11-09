@@ -15,7 +15,6 @@ export const fetchData = (searchType: string, searchQuery: string, page: number)
         return res.json();
       })
       .then((data) => {
-        console.log("Data:", data);
         return data.items;
       })
       .catch((err) => {

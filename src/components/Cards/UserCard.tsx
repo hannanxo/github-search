@@ -1,8 +1,7 @@
 import React from "react";
 import { Card, Avatar, Typography } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-import { UserData } from "../types/User";
-import styles from "../styles/UserCard.module.css";
+import { UserData } from "../../types/User";
+import styles from "../../styles/UserCard.module.css";
 
 const { Text } = Typography;
 

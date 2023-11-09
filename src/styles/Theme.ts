@@ -2,7 +2,11 @@ import type { ThemeConfig } from "antd";
 
 const themeConfig: ThemeConfig = {
   token: { borderRadius: 0 },
-  components: {},
+  components: {
+    Input: {
+      //
+    },
+  },
 };
 
 export default themeConfig;

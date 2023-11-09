@@ -8,7 +8,7 @@ import useDebounce from "@/hooks/useDebounce";
 
 import Header from "@/components/Header";
 import SearchInput from "@/components/SearchInput";
-import RenderData from "@/containers/RenderData";
+import RenderData from "@/containers/DataDisplayContainer";
 
 const HomePage = () => {
   const [darkMode, setDarkMode] = useDarkMode();
