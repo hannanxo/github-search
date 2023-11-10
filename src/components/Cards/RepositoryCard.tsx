@@ -1,39 +1,47 @@
 import React from "react";
-import { Card, Typography } from "antd";
+import { Avatar, Card, Typography } from "antd";
 import { RepositoryData } from "@/types/Repository";
 import styles from "../../styles/RepositoryCard.module.css";
 
-const { Text } = Typography;
+const { Text, Link } = Typography;
 
 const RepositoryCard = ({ repository }: { repository: RepositoryData }) => {
   return (
-    <Card className={styles.card} title={repository.name}>
-      <Text className={styles.text}>
-        <span className={styles.heading}>Description:</span>
-        <br />
-        {repository.description ? repository.description : "Description not available"}
-      </Text>
-      <br />
+    <Card bodyStyle={{ padding: "0" }}>
+      <div style={{ display: "flex", alignItems: "center", marginBottom: "10px", borderBottom: "#80808070 solid 1px", padding: "8px" }}>
+        <Avatar size={64} src={repository.owner.avatar_url} />
+        <div style={{ marginLeft: "10px" }}>
+          <Text strong>{repository.full_name}</Text>
+        </div>
+      </div>
 
-      <Text className={styles.text}>
-        <span className={styles.heading}>Language:</span>
+      <div style={{ lineHeight: "2.5", padding: "0 24px 18px 24px" }}>
+        <Text>Description: {repository.description ? repository.description : "Not found"}</Text>
         <br />
-        {repository.language ? repository.language : "Language not available"}
-      </Text>
-      <br />
+        <Text>Language: {repository.language ? repository.language : "Not found"}</Text>
+        <br />
 
-      <Text className={styles.text}>
-        <span className={styles.heading}>Forks: </span>
+        <Text>Forks: {repository.forks_count}</Text>
         <br />
-        {repository.forks_count}
-      </Text>
-      <br />
 
-      <Text className={styles.text}>
-        <span className={styles.heading}>Open issues: </span>
+        <Text>Open Issues: {repository.open_issues}</Text>
         <br />
-        {repository.open_issues}
-      </Text>
+
+        <Link
+          style={{
+            display: "inline-block",
+            padding: "8px 16px",
+            backgroundColor: "rgb(50 112 225)",
+            marginTop: "4px",
+            color: "#fff",
+            borderRadius: "4px",
+            textDecoration: "none",
+          }}
+          href={repository.owner.html_url}
+        >
+          Owner's Profile
+        </Link>
+      </div>
     </Card>
   );
 };

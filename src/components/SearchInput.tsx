@@ -23,7 +23,7 @@ const SearchInput = ({
       <Col span={1} className="dropdown">
         <Select defaultValue={searchType} onChange={(value) => setSearchType(value)}>
           <Option value="users">Users</Option>
-          <Option value="repositories">Repositories</Option>
+          <Option value="repositories">Repos</Option>
         </Select>
       </Col>
     </Row>

@@ -4,8 +4,6 @@ import React, { useState } from "react";
 import { Layout, ConfigProvider, theme, Flex, Row } from "antd";
 import themeConfig from "@/styles/Theme";
 import { useDarkMode } from "@/hooks/useTheme";
-import useDebounce from "@/hooks/useDebounce";
-
 import Header from "@/components/Header";
 import SearchInput from "@/components/SearchInput";
 import RenderData from "@/containers/DataDisplayContainer";
@@ -23,9 +21,11 @@ const HomePage = () => {
           <Header darkMode={darkMode} setDarkMode={setDarkMode} />
           <SearchInput searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchType={searchType} setSearchType={setSearchType} />
         </div>
-        <Row gutter={[20, 20]} style={{ margin: "24px -15px" }}>
-          <RenderData searchType={searchType} searchQuery={searchQuery} />
-        </Row>
+        {isSearching && (
+          <Row gutter={[20, 20]} style={{ margin: "24px -15px" }}>
+            <RenderData searchType={searchType} searchQuery={searchQuery} />
+          </Row>
+        )}
       </Layout>
     </ConfigProvider>
   );

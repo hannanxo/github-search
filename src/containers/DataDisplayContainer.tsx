@@ -20,7 +20,6 @@ const RenderData = ({ searchType, searchQuery }: { searchType: string; searchQue
     }
   );
 
-  console.log("TYPES", typeof bottomBoundaryRef);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
