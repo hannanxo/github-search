@@ -13,6 +13,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "antd": "^5.10.3",
+    "antd-style": "^3.5.2",
     "axios": "^1.6.0",
     "emotion": "^11.0.0",
     "lodash": "^4.17.21",

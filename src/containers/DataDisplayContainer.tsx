@@ -1,9 +1,8 @@
 import React, { useRef, useEffect } from "react";
 
-import { useQuery, useInfiniteQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 import { fetchData } from "@/api/GithubApi";
 import useDebounce from "@/hooks/useDebounce";
-import { Key } from "react";
 import { LoadingLayout } from "@/components/Layouts/LoadingLayout";
 import { SuccessLayout } from "@/components/Layouts/SuccessLayout";
 
@@ -15,7 +14,7 @@ const RenderData = ({ searchType, searchQuery }: { searchType: string; searchQue
     ({ pageParam = 1 }) => fetchData(searchType, debouncedSearch, pageParam),
     {
       getNextPageParam: (lastPage) => {
-        return lastPage.length === 0 ? null : lastPage.length + 1;
+        return lastPage?.length === 0 ? null : lastPage?.length + 1;
       },
     }
   );
@@ -52,10 +51,6 @@ const RenderData = ({ searchType, searchQuery }: { searchType: string; searchQue
     return <div>Error loading data</div>;
   }
 
-  // not working
-  if (!data) {
-    <div>Data not available</div>;
-  }
   return null;
 };
 

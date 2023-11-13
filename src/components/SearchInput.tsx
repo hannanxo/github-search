@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Input, Select } from "antd";
-import "../styles/SearchInput.css";
+import useStyles from "@/hooks/useStyles";
 
 const { Option } = Select;
 
@@ -15,12 +15,13 @@ const SearchInput = ({
   searchType: string;
   setSearchType: React.Dispatch<React.SetStateAction<string>>;
 }) => {
+  const { styles } = useStyles();
   return (
-    <Row gutter={[20, 12]} className="input-field">
+    <Row gutter={[20, 12]}>
       <Col span={19}>
-        <Input className="input-field" placeholder="Start typing to search .." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+        <Input placeholder="Start typing to search .." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
       </Col>
-      <Col span={1} className="dropdown">
+      <Col span={1} className={styles.dropDown}>
         <Select defaultValue={searchType} onChange={(value) => setSearchType(value)}>
           <Option value="users">Users</Option>
           <Option value="repositories">Repos</Option>

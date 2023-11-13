@@ -1,6 +1,5 @@
-import React from "react";
+import React, { Key } from "react";
 import { Col } from "antd";
-import { Key } from "react";
 import UserCard from "@/components/Cards/UserCard";
 import RepositoryCard from "@/components/Cards/RepositoryCard";
 import { LoadingLayout } from "../Layouts/LoadingLayout";
@@ -22,7 +21,7 @@ export const SuccessLayout = ({
       {data?.pages.map((page: any[], pageIndex: Key | null | undefined) => (
         <React.Fragment key={pageIndex}>
           {page.map((item: any, index: Key | null | undefined) => (
-            <Col key={index} xs={12} sm={12} md={12} lg={8} xl={8}>
+            <Col key={index} xs={12} sm={12} md={8} lg={8} xl={8}>
               {searchType === "users" ? <UserCard user={item} /> : <RepositoryCard repository={item} />}
             </Col>
           ))}

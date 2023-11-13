@@ -6,5 +6,6 @@ export type RepositoryData = {
   forks_count: number;
   open_issues: number;
   created_at: Date;
+  html_url: string;
   owner: object;
 };

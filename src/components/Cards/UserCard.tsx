@@ -1,23 +1,28 @@
 import React from "react";
-import { Card, Avatar, Typography } from "antd";
+import { Card, Avatar, Typography, Space } from "antd";
 import { UserData } from "../../types/User";
-import styles from "../../styles/UserCard.module.css";
 import Link from "next/link";
+import useStyles from "@/hooks/useStyles";
 
 const { Text } = Typography;
 
 const UserCard = ({ user }: { user: UserData }) => {
+  const { styles } = useStyles();
   return (
-    <Card bodyStyle={{ display: "flex", alignItems: "center", padding: "10px" }}>
-      <div style={{ marginRight: "10px" }}>
-        <Avatar size={50} src={user.avatar_url} />
-      </div>
-      <div style={{ flex: 1 }}>
-        <Text>{user.login}</Text>
-      </div>
-      <div>
-        <Link href={user.html_url}>View</Link>
-      </div>
+    <Card bodyStyle={{ padding: "0" }}>
+      <Space className={styles.userCardHead}>
+        <Space>
+          <Avatar size={55} src={user.avatar_url} />
+          <Text>{user.login}</Text>
+        </Space>
+      </Space>
+
+      <Space className={styles.usercardContent}>
+        <Text strong>Type: {user.type}</Text>
+        <Link className={styles.linkButton} href={user.html_url}>
+          <Text className={styles.linkText}>View</Text>
+        </Link>
+      </Space>
     </Card>
   );
 };
