@@ -5,8 +5,11 @@ import Link from "next/link";
 import useStyles from "@/hooks/useStyles";
 
 const { Text } = Typography;
+interface UserCardProps {
+  user: UserData;
+}
 
-const UserCard = ({ user }: { user: UserData }) => {
+const UserCard: React.FC<UserCardProps> = ({ user }) => {
   const { styles } = useStyles();
   return (
     <Card bodyStyle={{ padding: "0" }}>
@@ -16,7 +19,6 @@ const UserCard = ({ user }: { user: UserData }) => {
           <Text>{user.login}</Text>
         </Space>
       </Space>
-
       <Space className={styles.usercardContent}>
         <Text strong>Type: {user.type}</Text>
         <Link className={styles.linkButton} href={user.html_url}>

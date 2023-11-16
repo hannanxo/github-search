@@ -3,9 +3,10 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import StyledComponentsRegistry from "../lib/AntdRegistry";
 import useStyles from "@/hooks/useStyles";
+import { DarkModeProvider } from "@/context/DarkModeContext";
 const queryClient = new QueryClient();
 
-const RootLayout = ({ children }: React.PropsWithChildren) => {
+const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { styles } = useStyles();
   return (
     <html lang="en">
@@ -18,7 +19,9 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
       </head>
       <body className={styles.mainWrapper}>
         <QueryClientProvider client={queryClient}>
-          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          <StyledComponentsRegistry>
+            <DarkModeProvider>{children}</DarkModeProvider>
+          </StyledComponentsRegistry>
         </QueryClientProvider>
       </body>
     </html>

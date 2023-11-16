@@ -5,7 +5,11 @@ import useStyles from "@/hooks/useStyles";
 
 const { Text, Link } = Typography;
 
-const RepositoryCard = ({ repository }: { repository: RepositoryData }) => {
+interface RepositoryCardProps {
+  repository: RepositoryData;
+}
+
+const RepositoryCard: React.FC<RepositoryCardProps> = ({ repository }) => {
   const { styles } = useStyles();
 
   return (
@@ -16,7 +20,6 @@ const RepositoryCard = ({ repository }: { repository: RepositoryData }) => {
           <Text strong>{repository.full_name}</Text>
         </Space>
       </Space>
-
       <Space style={{ padding: "24px 8px 22px 24px" }}>
         <Space className={styles.repocardContent}>
           <Text>Description: {repository.description ? repository.description : "Not found"}</Text>
@@ -29,7 +32,6 @@ const RepositoryCard = ({ repository }: { repository: RepositoryData }) => {
 
           <Text>Open Issues: {repository.open_issues}</Text>
           <br />
-
           <Link className={styles.linkButton} href={repository.html_url}>
             <Text className={styles.linkText}>View Repo</Text>
           </Link>

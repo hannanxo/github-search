@@ -15,12 +15,13 @@ const useStyles = createStyles(({ css, token }) => ({
     align-items: flex-start;
     padding: ${token.paddingXL}px;
     min-height: 100vh;
+    padding: 24px;
 
     @media screen and (max-width: 768px) {
       justify-content: flex-start;
       padding: 32px;
       min-height: 100vh;
-      width: 470px;
+      // width: 470px;
     }
   `,
   headerSpace: css`

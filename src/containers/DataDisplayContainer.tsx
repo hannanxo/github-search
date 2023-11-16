@@ -1,12 +1,21 @@
-import React, { useRef, useEffect } from "react";
-
+import React, { useRef, useEffect, useState, Key } from "react";
+import { Col, Layout, Row } from "antd";
 import { useInfiniteQuery } from "react-query";
 import { fetchData } from "@/api/GithubApi";
 import useDebounce from "@/hooks/useDebounce";
-import { LoadingLayout } from "@/components/Layouts/LoadingLayout";
-import { SuccessLayout } from "@/components/Layouts/SuccessLayout";
+import { LoadingSkeleton } from "@/components/Skeleton";
+import SearchInput from "@/components/SearchInput";
+import useStyles from "@/hooks/useStyles";
+import Header from "@/components/Header";
+import RepositoryCard from "@/components/Cards/RepositoryCard";
+import UserCard from "@/components/Cards/UserCard";
 
-const RenderData = ({ searchType, searchQuery }: { searchType: string; searchQuery: string }) => {
+// const DataDisplayContainer = ({ darkMode, setDarkMode }: { darkMode: boolean; setDarkMode: React.Dispatch<React.SetStateAction<boolean>> }) => {
+const DataDisplayContainer = () => {
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchType, setSearchType] = useState<string>("users");
+  const isSearching = searchQuery.length > 0;
+  const { styles } = useStyles();
   const debouncedSearch = useDebounce(searchQuery, 500);
   const bottomBoundaryRef = useRef<HTMLDivElement | null>(null);
   const { data, isLoading, isError, isSuccess, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery(
@@ -18,7 +27,6 @@ const RenderData = ({ searchType, searchQuery }: { searchType: string; searchQue
       },
     }
   );
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -39,19 +47,35 @@ const RenderData = ({ searchType, searchQuery }: { searchType: string; searchQue
     };
   }, [bottomBoundaryRef, fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-  if (isLoading) {
-    return <LoadingLayout searchType={searchType} />;
-  }
-
-  if (isSuccess) {
-    return <SuccessLayout searchType={searchType} data={data} bottomBoundaryRef={bottomBoundaryRef} isFetchingNextPage={isFetchingNextPage} />;
-  }
-
-  if (isError) {
-    return <div>Error loading data</div>;
-  }
-
-  return null;
+  return (
+    <>
+      <Layout className={isSearching ? styles.enabledSearch : styles.layoutWrapper}>
+        <div className={styles.headerSpace}>
+          <Header />
+          <SearchInput searchQuery={searchQuery} setSearchQuery={setSearchQuery} searchType={searchType} setSearchType={setSearchType} />
+        </div>
+        <Row gutter={[20, 20]}>
+          {isLoading && isSearching && <LoadingSkeleton searchType={searchType} />}
+          {isSuccess && isSearching && (
+            <>
+              {data?.pages.map((page: any[], pageIndex: Key | null | undefined) => (
+                <React.Fragment key={pageIndex}>
+                  {page.map((item: any, index: Key | null | undefined) => (
+                    <Col key={index} xs={page.length > 2 ? 12 : 24} sm={page.length > 2 ? 12 : 24} md={page.length > 2 ? 8 : 24} lg={page.length > 2 ? 8 : 24} xl={page.length > 2 ? 8 : 24}>
+                      {searchType === "users" ? <UserCard user={item} /> : <RepositoryCard repository={item} />}
+                    </Col>
+                  ))}
+                </React.Fragment>
+              ))}
+              <div ref={bottomBoundaryRef}></div>
+              {isFetchingNextPage && <LoadingSkeleton searchType={searchType} />}
+            </>
+          )}
+          {isError && isSearching && <div>Error loading data</div>}
+        </Row>
+      </Layout>
+    </>
+  );
 };
 
-export default RenderData;
+export default DataDisplayContainer;

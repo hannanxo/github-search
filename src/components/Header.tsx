@@ -4,10 +4,15 @@ import Image from "next/image";
 import DarkLogo from "../../public/images/github-mark-white.png";
 import LightLogo from "../../public/images/github-mark.png";
 import useStyles from "@/hooks/useStyles";
+import { useDarkModeContext } from "@/context/DarkModeContext";
 
-const Header = ({ darkMode, setDarkMode }: { darkMode: boolean; setDarkMode: React.Dispatch<React.SetStateAction<boolean>> }) => {
+const Header: React.FC = () => {
   const { Header } = Layout;
   const { styles } = useStyles();
+  const {
+    state: { darkMode },
+    dispatch,
+  } = useDarkModeContext();
 
   return (
     <Row gutter={[20, 12]} className={styles.headerOverride}>
@@ -21,7 +26,7 @@ const Header = ({ darkMode, setDarkMode }: { darkMode: boolean; setDarkMode: Rea
           </span>
         </Flex>
       </Header>
-      <Switch checked={darkMode} checkedChildren="Dark" unCheckedChildren="Light" className={styles.switch} onChange={() => setDarkMode(!darkMode)} />
+      <Switch checked={darkMode} checkedChildren="Dark" unCheckedChildren="Light" className={styles.switch} onChange={() => dispatch({ type: "TOGGLE_DARK_MODE" })} />
     </Row>
   );
 };
