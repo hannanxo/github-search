@@ -26,7 +26,7 @@ const ContentContainer = () => {
         <Row style={{ width: "100%", margin: "0" }} gutter={[16, 16]}>
           {isLoading && isSearching && <LoadingSkeleton searchType={searchType} />}
           {isSuccess && isSearching && (
-            <>
+            <React.Fragment>
               {data?.pages.map((page: any[], pageIndex: Key | null | undefined) => (
                 <React.Fragment key={pageIndex}>
                   {page.map((item: any, index: Key | null | undefined) => (
@@ -44,7 +44,7 @@ const ContentContainer = () => {
               )}
               <div ref={bottomBoundaryRef}></div>
               {isFetchingNextPage && <LoadingSkeleton searchType={searchType} />}
-            </>
+            </React.Fragment>
           )}
 
           {isError && isSearching && <Alert className={styles.errorMsg} message="Error" description="There was error while fetching the results" type="error" showIcon />}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Card, Space, Typography } from "antd";
+import { Avatar, Card, Flex, Space, Typography } from "antd";
 import { RepositoryData } from "@/types/Repository";
 import Image from "next/image";
 import useStyles from "@/hooks/useStyles";
@@ -17,26 +17,28 @@ const RepositoryCard = ({ repository }: { repository: RepositoryData }) => {
 
   return (
     <Card bodyStyle={{ padding: "0" }}>
-      <Space className={styles.repocardHead}>
-        <Avatar size={64} src={repository.owner.avatar_url} />
+      <Flex gap={10} className={styles.repocardHead}>
+        <Avatar size={55} src={repository.owner.avatar_url} />
         <Space>
           <Text strong>{repository.full_name}</Text>
         </Space>
-      </Space>
-      <Space className={styles.repocardContent}>
-        {darkMode ? <Image src={ForkDarkIcon} alt="" width={35} height={35} /> : <Image src={ForkLightIcon} alt="" width={35} height={35} />}
-        <Text>{repository.forks_count}</Text>
-        <br />
-        {darkMode ? <Image src={IssueDarkIcon} alt="" width={35} height={35} /> : <Image src={IssueLightIcon} alt="" width={35} height={35} />}
+      </Flex>
 
-        <Text> {repository.open_issues}</Text>
-        <br />
-        <Space className={styles.buttonMobile}>
+      <Flex flex={1} justify="space-around" align="center" wrap="wrap" style={{ padding: "10px 0px 10px 0px" }}>
+        <Flex gap={10} align="center">
+          {darkMode ? <Image src={ForkDarkIcon} alt="" width={35} height={35} /> : <Image src={ForkLightIcon} alt="" width={35} height={35} />}
+          <Text>{repository.forks_count}</Text>
+        </Flex>
+        <Flex gap={10} align="center">
+          {darkMode ? <Image src={IssueDarkIcon} alt="" width={35} height={35} /> : <Image src={IssueLightIcon} alt="" width={35} height={35} />}
+          <Text> {repository.open_issues}</Text>
+        </Flex>
+        <Flex gap={10} align="center" className={styles.buttonMobile}>
           <Link className={styles.linkButton} href={repository.html_url}>
             <Text className={styles.linkText}>View</Text>
           </Link>
-        </Space>
-      </Space>
+        </Flex>
+      </Flex>
     </Card>
   );
 };

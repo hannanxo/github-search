@@ -8,8 +8,11 @@ export default function useInfiniteScroll(searchType: string, debouncedSearch: s
     ["search", searchType, debouncedSearch],
     ({ pageParam = 1 }) => fetchData(searchType, debouncedSearch, pageParam),
     {
-      getNextPageParam: (lastPage) => {
-        return !lastPage?.length ? null : lastPage?.length + 1;
+      getNextPageParam: (lastPage, allPages) => {
+        if (lastPage && lastPage.length > 0) {
+          return allPages.length + 1;
+        }
+        return null;
       },
     }
   );

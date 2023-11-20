@@ -62,13 +62,6 @@ const useStyles = createStyles(({ css, token }) => ({
     padding: ${token.paddingSM}px;
   `,
 
-  usercardContent: css`
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: ${token.paddingSM}px;
-  `,
   userType: css`
     marginright: 8px;
   `,
@@ -84,7 +77,8 @@ const useStyles = createStyles(({ css, token }) => ({
   buttonMobile: css`
     @media screen and (max-width: 865px) {
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
+      margin-top: 14px;
     }
   `,
   repocardContent: css`

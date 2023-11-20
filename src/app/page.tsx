@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
   return (
     <ConfigProvider theme={{ algorithm: darkMode ? theme.darkAlgorithm : theme.defaultAlgorithm, token }}>
       <ThemeProvider theme={{ algorithm: darkMode ? theme.darkAlgorithm : theme.defaultAlgorithm, token }}>
-        <NextTopLoader color={darkMode ? "#b21900" : "#3399ff"} showSpinner={false} initialPosition={0.8} crawlSpeed={50} speed={50} />
+        <NextTopLoader color={darkMode ? "#b21900" : "#3399ff"} showSpinner={false} initialPosition={0.5} crawlSpeed={50} speed={50} />
         <ContentContainer />
       </ThemeProvider>
     </ConfigProvider>
