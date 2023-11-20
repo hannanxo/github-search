@@ -1,4 +1,6 @@
 {
   "colorPrimary": "#3399ff",
-  "borderRadius": 0
+  "borderRadius": 0,
+  "colorPrimaryText": "gray",
+  "controlItemBgActive": "#1677ff8a"
 }

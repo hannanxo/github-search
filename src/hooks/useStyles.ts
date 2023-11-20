@@ -15,13 +15,11 @@ const useStyles = createStyles(({ css, token }) => ({
     align-items: flex-start;
     padding: ${token.paddingXL}px;
     min-height: 100vh;
-    padding: 24px;
 
     @media screen and (max-width: 768px) {
       justify-content: flex-start;
       padding: 32px;
       min-height: 100vh;
-      // width: 470px;
     }
   `,
   headerSpace: css`
@@ -38,9 +36,6 @@ const useStyles = createStyles(({ css, token }) => ({
 
   switch: css`
     background-color: ${token.colorPrimary};
-    :hover {
-      background-color: ${token.colorPrimary};
-    }
   `,
 
   titleFirst: css`
@@ -50,8 +45,7 @@ const useStyles = createStyles(({ css, token }) => ({
   `,
   titleSecond: css`
     font-weight: 100;
-    font-size: 14px;
-    color: gray;
+    color: ${token.colorPrimaryText};
     margin: 4px 0 0 0;
   `,
 
@@ -64,9 +58,8 @@ const useStyles = createStyles(({ css, token }) => ({
     width: 100%;
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
     border-bottom: #80808070 solid 1px;
-    padding: 12px;
+    padding: ${token.paddingSM}px;
   `,
 
   usercardContent: css`
@@ -74,7 +67,10 @@ const useStyles = createStyles(({ css, token }) => ({
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px;
+    padding: ${token.paddingSM}px;
+  `,
+  userType: css`
+    marginright: 8px;
   `,
 
   repocardHead: css`
@@ -82,27 +78,53 @@ const useStyles = createStyles(({ css, token }) => ({
     align-items: center;
     margin-bottom: 0px;
     border-bottom: #80808070 solid 1px;
-    padding: 14px;
+    padding: ${token.paddingSM}px;
   `,
 
-  repocardContent: css`
-    line-height: 2;
-    padding: 0px !important;
-    display: inline;
-    margin-bottom: 0px;
+  buttonMobile: css`
+    @media screen and (max-width: 865px) {
+      display: flex;
+      justify-content: flex-end;
+    }
   `,
+  repocardContent: css`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: ${token.paddingSM}px;
+
+    @media screen and (max-width: 865px) {
+      width: 100%;
+      display: block;
+    }
+  `,
+
   linkButton: css`
     display: inline-block;
     padding: 8px 16px;
     background-color: ${token.colorPrimary};
     margin-top: 4px;
-    color: #fff;
     border-radius: 4px;
     text-decoration: none;
   `,
 
   linkText: css`
-    color: #fff;
+    color: ${token.colorWhite};
+  `,
+
+  noData: css`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  `,
+
+  errorMsg: css`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   `,
 }));
 

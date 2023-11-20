@@ -1,18 +1,17 @@
 import React from "react";
-import { Flex, Switch, Row, Col, Layout } from "antd";
+import { Flex, Switch, Row, Col, Layout, Typography } from "antd";
 import Image from "next/image";
 import DarkLogo from "../../public/images/github-mark-white.png";
 import LightLogo from "../../public/images/github-mark.png";
 import useStyles from "@/hooks/useStyles";
 import { useDarkModeContext } from "@/context/DarkModeContext";
 
+const { Text, Link } = Typography;
+
 const Header: React.FC = () => {
   const { Header } = Layout;
   const { styles } = useStyles();
-  const {
-    state: { darkMode },
-    dispatch,
-  } = useDarkModeContext();
+  const { darkMode, dispatch } = useDarkModeContext();
 
   return (
     <Row gutter={[20, 12]} className={styles.headerOverride}>
@@ -22,7 +21,7 @@ const Header: React.FC = () => {
           <span className={styles.titleFirst}>
             Github Searcher
             <br />
-            <p className={styles.titleSecond}>Search users or repositories below</p>
+            <Text className={styles.titleSecond}>Search users or repositories below</Text>
           </span>
         </Flex>
       </Header>

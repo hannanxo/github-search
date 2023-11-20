@@ -1,39 +1,39 @@
 import React from "react";
 import { Avatar, Card, Space, Typography } from "antd";
 import { RepositoryData } from "@/types/Repository";
+import Image from "next/image";
 import useStyles from "@/hooks/useStyles";
+import ForkLightIcon from "../../../public/images/forkLight.png";
+import ForkDarkIcon from "../../../public/images/forkDark.png";
+import IssueDarkIcon from "../../../public/images/issueDark.png";
+import IssueLightIcon from "../../../public/images/issueLight.png";
+import { useDarkModeContext } from "@/context/DarkModeContext";
 
 const { Text, Link } = Typography;
 
-interface RepositoryCardProps {
-  repository: RepositoryData;
-}
-
-const RepositoryCard: React.FC<RepositoryCardProps> = ({ repository }) => {
+const RepositoryCard = ({ repository }: { repository: RepositoryData }) => {
+  const { darkMode } = useDarkModeContext();
   const { styles } = useStyles();
 
   return (
     <Card bodyStyle={{ padding: "0" }}>
       <Space className={styles.repocardHead}>
         <Avatar size={64} src={repository.owner.avatar_url} />
-        <Space style={{ marginLeft: "10px" }}>
+        <Space>
           <Text strong>{repository.full_name}</Text>
         </Space>
       </Space>
-      <Space style={{ padding: "24px 8px 22px 24px" }}>
-        <Space className={styles.repocardContent}>
-          <Text>Description: {repository.description ? repository.description : "Not found"}</Text>
-          <br />
-          <Text>Language: {repository.language ? repository.language : "Not found"}</Text>
-          <br />
+      <Space className={styles.repocardContent}>
+        {darkMode ? <Image src={ForkDarkIcon} alt="" width={35} height={35} /> : <Image src={ForkLightIcon} alt="" width={35} height={35} />}
+        <Text>{repository.forks_count}</Text>
+        <br />
+        {darkMode ? <Image src={IssueDarkIcon} alt="" width={35} height={35} /> : <Image src={IssueLightIcon} alt="" width={35} height={35} />}
 
-          <Text>Forks: {repository.forks_count}</Text>
-          <br />
-
-          <Text>Open Issues: {repository.open_issues}</Text>
-          <br />
+        <Text> {repository.open_issues}</Text>
+        <br />
+        <Space className={styles.buttonMobile}>
           <Link className={styles.linkButton} href={repository.html_url}>
-            <Text className={styles.linkText}>View Repo</Text>
+            <Text className={styles.linkText}>View</Text>
           </Link>
         </Space>
       </Space>

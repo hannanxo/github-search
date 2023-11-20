@@ -4,12 +4,12 @@ import useStyles from "@/hooks/useStyles";
 
 const { Option } = Select;
 
-interface SearchInputProps {
+type SearchInputProps = {
   searchQuery: string;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   searchType: string;
   setSearchType: React.Dispatch<React.SetStateAction<string>>;
-}
+};
 
 const SearchInput: React.FC<SearchInputProps> = ({ searchQuery, setSearchQuery, searchType, setSearchType }) => {
   const { styles } = useStyles();

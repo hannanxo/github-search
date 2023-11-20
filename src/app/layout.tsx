@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import StyledComponentsRegistry from "../lib/AntdRegistry";
 import useStyles from "@/hooks/useStyles";
 import { DarkModeProvider } from "@/context/DarkModeContext";
+
 const queryClient = new QueryClient();
 
 const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {

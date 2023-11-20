@@ -1,26 +1,22 @@
-import React, { createContext, useContext, useReducer, useEffect, ReactNode } from "react";
+import React, { createContext, useContext, useReducer, useEffect } from "react";
 
-interface DarkModeState {
-  darkMode: boolean;
-}
-
-interface DarkModeAction {
+type DarkModeAction = {
   type: "TOGGLE_DARK_MODE";
-}
+};
 
-interface DarkModeContextProps {
-  state: DarkModeState;
+type DarkModeContextProps = {
+  darkMode: boolean;
   dispatch: React.Dispatch<DarkModeAction>;
-}
+};
 
 const DarkModeContext = createContext<DarkModeContextProps | undefined>(undefined);
 
-const darkModeReducer = (state: DarkModeState, action: DarkModeAction): DarkModeState => {
+const darkModeReducer = (state: boolean, action: DarkModeAction): boolean => {
   switch (action.type) {
     case "TOGGLE_DARK_MODE":
-      const newDarkMode = !state.darkMode;
+      const newDarkMode = !state;
       localStorage.setItem("darkMode", JSON.stringify(newDarkMode));
-      return { ...state, darkMode: newDarkMode };
+      return newDarkMode;
     default:
       return state;
   }
@@ -28,14 +24,16 @@ const darkModeReducer = (state: DarkModeState, action: DarkModeAction): DarkMode
 
 const DarkModeProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const storedDarkMode = localStorage.getItem("darkMode");
-  const initialState: DarkModeState = { darkMode: storedDarkMode ? JSON.parse(storedDarkMode) : false };
-  const [state, dispatch] = useReducer(darkModeReducer, initialState);
+  const initialState: boolean = storedDarkMode ? JSON.parse(storedDarkMode) : false;
+  const [darkMode, dispatch] = useReducer(darkModeReducer, initialState);
 
   useEffect(() => {
-    localStorage.setItem("darkMode", JSON.stringify(state.darkMode));
-  }, [state.darkMode]);
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
 
-  return <DarkModeContext.Provider value={{ state, dispatch }}>{children}</DarkModeContext.Provider>;
+  const contextValue: DarkModeContextProps = { darkMode, dispatch };
+
+  return <DarkModeContext.Provider value={contextValue}>{children}</DarkModeContext.Provider>;
 };
 
 const useDarkModeContext = (): DarkModeContextProps => {
