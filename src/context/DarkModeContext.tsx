@@ -1,4 +1,8 @@
+import { ConfigProvider, theme } from "antd";
+import { ThemeProvider } from "antd-style";
 import React, { createContext, useContext, useReducer, useEffect } from "react";
+import * as darkTheme from "../ant-tokens/dark.json";
+import * as lightTheme from "../ant-tokens/light.json";
 
 type DarkModeAction = {
   type: "TOGGLE_DARK_MODE";
@@ -32,8 +36,15 @@ const DarkModeProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   }, [darkMode]);
 
   const contextValue: DarkModeContextProps = { darkMode, dispatch };
+  const token = darkMode ? darkTheme : lightTheme;
 
-  return <DarkModeContext.Provider value={contextValue}>{children}</DarkModeContext.Provider>;
+  return (
+    <DarkModeContext.Provider value={contextValue}>
+      <ConfigProvider theme={{ algorithm: darkMode ? theme.darkAlgorithm : theme.defaultAlgorithm, token }}>
+        <ThemeProvider theme={{ algorithm: darkMode ? theme.darkAlgorithm : theme.defaultAlgorithm, token }}>{children}</ThemeProvider>
+      </ConfigProvider>
+    </DarkModeContext.Provider>
+  );
 };
 
 const useDarkModeContext = (): DarkModeContextProps => {
