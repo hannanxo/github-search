@@ -120,6 +120,11 @@ const useStyles = createStyles(({ css, token }) => ({
     left: 50%;
     transform: translate(-50%, -50%);
   `,
+
+  icon: css`
+    color: ${token.colorPrimary};
+    font-size: ${token.fontSizeXL}px !important;
+  `,
 }));
 
 export default useStyles;

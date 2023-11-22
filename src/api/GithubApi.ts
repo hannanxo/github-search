@@ -1,4 +1,11 @@
-export const fetchData = async (searchType: string, searchQuery: string, page: number) => {
+import { RepositoryData } from "@/types/Repository";
+import { UserData } from "@/types/User";
+
+export const fetchData = async (
+  searchType: string,
+  searchQuery: string,
+  page: number
+): Promise<UserData[] | RepositoryData[]> => {
   const itemsPerPage = 10;
   const apiUrl = `https://api.github.com/search/${searchType}?q=${searchQuery}&page=${page}&per_page=${itemsPerPage}`;
 

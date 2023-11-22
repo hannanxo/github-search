@@ -2,9 +2,20 @@ import { fetchData } from "@/api/GithubApi";
 import { useEffect, useRef } from "react";
 import { useInfiniteQuery } from "react-query";
 
-export default function useInfiniteScroll(searchType: string, debouncedSearch: string) {
+export default function useInfiniteScroll(
+  searchType: string,
+  debouncedSearch: string
+) {
   const bottomBoundaryRef = useRef<HTMLDivElement | null>(null);
-  const { data, isLoading, isError, isSuccess, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery(
+  const {
+    data,
+    isLoading,
+    isError,
+    isSuccess,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery(
     ["search", searchType, debouncedSearch],
     ({ pageParam = 1 }) => fetchData(searchType, debouncedSearch, pageParam),
     {
@@ -36,5 +47,12 @@ export default function useInfiniteScroll(searchType: string, debouncedSearch: s
     };
   }, [bottomBoundaryRef, fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-  return { data, isLoading, isError, isSuccess, isFetchingNextPage, bottomBoundaryRef };
+  return {
+    data,
+    isLoading,
+    isError,
+    isSuccess,
+    isFetchingNextPage,
+    bottomBoundaryRef,
+  };
 }
