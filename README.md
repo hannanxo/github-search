@@ -32,19 +32,25 @@ This project is using NEXT 14 which comes with the app router support. The start
 ## Screenshots:
 
 - User can toggle between dark and light themes using the switch (also the theme is preserved using localStorage):  
-  <img width="300" alt="image" src="https://github.com/hannanxo/github-search-app/assets/88934213/36fda9f7-6c28-4953-9f80-c8c2f2ef2370">
-  <img width="300" alt="image" src="https://github.com/hannanxo/github-search-app/assets/88934213/2e6df9f0-456c-4ea9-9d68-8fc061ad7450">
+  <div>
+    <img width="300" alt="image" src="https://github.com/hannanxo/github-search-app/assets/88934213/36fda9f7-6c28-4953-9f80-c8c2f2ef2370">
+    <img width="300" alt="image" src="https://github.com/hannanxo/github-search-app/assets/88934213/2e6df9f0-456c-4ea9-9d68-8fc061ad7450">
+  </div>
 
 - Debounce is used to reduce the number of API calls sent along with session-based caching:
-  <img width="300" alt="image" src="https://github.com/hannanxo/github-search-app/assets/88934213/ad1bd593-5595-47be-b8ea-ec31bceaa9bc">
-  <img width="300" alt="image" src="https://github.com/hannanxo/github-search-app/assets/88934213/8b2aca07-9fbe-491c-a57f-85a2c5384676">
+  <div>
+    <img width="300" alt="image" src="https://github.com/hannanxo/github-search-app/assets/88934213/ad1bd593-5595-47be-b8ea-ec31bceaa9bc">
+    <img width="300" alt="image" src="https://github.com/hannanxo/github-search-app/assets/88934213/8b2aca07-9fbe-491c-a57f-85a2c5384676">
+  </div>
+
 
 - Responsive UI:
-  <img width="146" alt="image" src="https://github.com/hannanxo/github-search-app/assets/88934213/9c8cb44e-eb59-47cd-9b92-76d2613828b1">
-  <img width="146" alt="image" src="https://github.com/hannanxo/github-search-app/assets/88934213/33f6f038-e88b-4089-a221-f4fba7cd9947">
-  <img width="146" alt="image"  src="https://github.com/hannanxo/github-search-app/assets/88934213/31f7242d-52f9-438e-a415-2ac6dc265a30">
+   <div>
+      <img width="146" alt="image" src="https://github.com/hannanxo/github-search-app/assets/88934213/9c8cb44e-eb59-47cd-9b92-76d2613828b1">
+      <img width="146" alt="image" src="https://github.com/hannanxo/github-search-app/assets/88934213/33f6f038-e88b-4089-a221-f4fba7cd9947">
+      <img width="146" alt="image"  src="https://github.com/hannanxo/github-search-app/assets/88934213/31f7242d-52f9-438e-a415-2ac6dc265a30">
+  </div>
 
-</br>
 
 ## Features:
 
