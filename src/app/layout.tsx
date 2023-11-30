@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import "../lib/wdyr";
 import { QueryClient, QueryClientProvider } from "react-query";
 import StyledComponentsRegistry from "../lib/AntdRegistry";
 import useStyles from "@/hooks/useStyles";
