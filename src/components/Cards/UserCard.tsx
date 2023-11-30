@@ -18,16 +18,10 @@ const UserCard = ({ user }: { user: UserData }) => {
           <Text>{user.login}</Text>
         </Space>
       </Flex>
-      <Flex
-        flex={1}
-        justify="space-around"
-        align="center"
-        wrap="wrap"
-        style={{ padding: "10px 0px 10px 0px" }}
-      >
+      <Flex flex={1} justify="space-around" align="center" wrap="wrap">
         <Flex>
           <Text strong>
-            <UserOutlined style={{ marginRight: "8px" }} />
+            <UserOutlined className={styles.userType} />
             {user.type === "Organization" ? "Org" : user.type}
           </Text>
         </Flex>

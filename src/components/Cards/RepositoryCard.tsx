@@ -18,13 +18,7 @@ const RepositoryCard = ({ repository }: { repository: RepositoryData }) => {
         </Space>
       </Flex>
 
-      <Flex
-        flex={1}
-        justify="space-around"
-        align="center"
-        wrap="wrap"
-        style={{ padding: "10px 0px 10px 0px" }}
-      >
+      <Flex flex={1} justify="space-around" align="center" wrap="wrap">
         <Flex gap={10} align="center">
           <ForkOutlined className={styles.icon} />
           <Text>{repository.forks_count}</Text>

@@ -16,9 +16,8 @@ const useStyles = createStyles(({ css, token }) => ({
     padding: ${token.paddingXL}px;
     min-height: 100vh;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: ${token.screenMD} px) {
       justify-content: flex-start;
-      padding: 32px;
       min-height: 100vh;
     }
   `,
@@ -54,6 +53,12 @@ const useStyles = createStyles(({ css, token }) => ({
     padding-right: 0 !important;
   `,
 
+  contentPadding: css`
+    @media screen and (min-width: ${token.screenMDMax}px) {
+      width: 96.5vw;
+    }
+  `,
+
   userCardHead: css`
     width: 100%;
     display: flex;
@@ -63,7 +68,7 @@ const useStyles = createStyles(({ css, token }) => ({
   `,
 
   userType: css`
-    marginright: 8px;
+    margin-right: 8px;
   `,
 
   repocardHead: css`
@@ -75,7 +80,7 @@ const useStyles = createStyles(({ css, token }) => ({
   `,
 
   buttonMobile: css`
-    @media screen and (max-width: 865px) {
+    @media screen and (max-width: ${token.screenMDMax}px) {
       display: flex;
       justify-content: center;
       margin-top: 14px;
@@ -88,7 +93,7 @@ const useStyles = createStyles(({ css, token }) => ({
     align-items: center;
     padding: ${token.paddingSM}px;
 
-    @media screen and (max-width: 865px) {
+    @media screen and (max-width: ${token.screenMDMax}px) {
       width: 100%;
       display: block;
     }
@@ -98,7 +103,8 @@ const useStyles = createStyles(({ css, token }) => ({
     display: inline-block;
     padding: 8px 16px;
     background-color: ${token.colorPrimary};
-    margin-top: 4px;
+    margin-top: 8px;
+    margin-bottom: 8px;
     border-radius: 4px;
     text-decoration: none;
   `,

@@ -17,6 +17,7 @@ const ContentContainer = () => {
   const isSearching = searchQuery.length > 0;
   const { styles } = useStyles();
   const debouncedSearch = useDebounce(searchQuery, 500);
+
   const {
     data,
     isLoading,
@@ -25,6 +26,8 @@ const ContentContainer = () => {
     isFetchingNextPage,
     bottomBoundaryRef,
   } = useInfiniteScroll(searchType, debouncedSearch);
+
+  const inputLength = debouncedSearch.length >= 3;
   return (
     <React.Fragment>
       <Layout
@@ -39,7 +42,7 @@ const ContentContainer = () => {
             setSearchType={setSearchType}
           />
         </div>
-        <Row style={{ width: "100%", margin: "0" }} gutter={[16, 16]}>
+        <Row className={styles.contentPadding} gutter={[16, 16]}>
           {isLoading && isSearching && (
             <LoadingSkeleton searchType={searchType} />
           )}
@@ -58,7 +61,7 @@ const ContentContainer = () => {
                   ))}
                 </React.Fragment>
               ))}
-              {debouncedSearch.length >= 3 && data?.pages[0].length === 0 && (
+              {inputLength && data?.pages[0].length === 0 && (
                 <Space className={styles.noData}>
                   <Empty />
                 </Space>

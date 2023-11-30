@@ -19,14 +19,14 @@ export const LoadingSkeleton = ({ searchType }: { searchType: string }) => {
               active
               avatar={{ shape: "circle", size: "large" }}
               paragraph={{ rows: 1 }}
-              style={{ backgroundColor: "#80808017", padding: "28px" }}
+              style={{ backgroundColor: "#80808017", padding: "25px" }}
             />
           ) : (
             <Skeleton
               active
               avatar={{ shape: "circle", size: "large" }}
               paragraph={{ rows: 1 }}
-              style={{ backgroundColor: "#80808017", padding: "28px" }}
+              style={{ backgroundColor: "#80808017", padding: "25px" }}
             />
           )}
         </Col>
