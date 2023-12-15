@@ -1,38 +1,13 @@
-import { fetchData } from "@/api/GithubApi";
 import { useEffect, useRef } from "react";
-import { useInfiniteQuery } from "react-query";
 
-export default function useInfiniteScroll(
-  searchType: string,
-  debouncedSearch: string
-) {
+export default function useInfiniteScroll(callback: () => any) {
   const bottomBoundaryRef = useRef<HTMLDivElement | null>(null);
-  const {
-    data,
-    isLoading,
-    isError,
-    isSuccess,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery(
-    ["search", searchType, debouncedSearch],
-    ({ pageParam = 1 }) => fetchData(searchType, debouncedSearch, pageParam),
-    {
-      getNextPageParam: (lastPage, allPages) => {
-        if (lastPage && lastPage.length > 0) {
-          return allPages.length + 1;
-        }
-        return null;
-      },
-    }
-  );
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
-        if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
-          fetchNextPage();
+        if (entry.isIntersecting) {
+          callback();
         }
       },
       { threshold: 1 }
@@ -45,14 +20,9 @@ export default function useInfiniteScroll(
     return () => {
       observer.disconnect();
     };
-  }, [bottomBoundaryRef, fetchNextPage, hasNextPage, isFetchingNextPage]);
+  }, [bottomBoundaryRef, callback]);
 
   return {
-    data,
-    isLoading,
-    isError,
-    isSuccess,
-    isFetchingNextPage,
     bottomBoundaryRef,
   };
 }

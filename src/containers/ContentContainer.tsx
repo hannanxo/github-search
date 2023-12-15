@@ -1,6 +1,7 @@
 import React, { useState, Key } from "react";
 import { Alert, Col, Empty, Layout, Row, Space } from "antd";
 import useDebounce from "@/hooks/useDebounce";
+import { fetchData } from "@/api/GithubApi";
 import { LoadingSkeleton } from "@/components/Skeleton";
 import SearchInput from "@/components/SearchInput";
 import useStyles from "@/hooks/useStyles";
@@ -10,6 +11,7 @@ import UserCard from "@/components/Cards/UserCard";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 import { UserData } from "@/types/User";
 import { RepositoryData } from "@/types/Repository";
+import { useInfiniteQuery } from "react-query";
 
 const ContentContainer = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -17,15 +19,30 @@ const ContentContainer = () => {
   const isSearching = searchQuery.length > 0;
   const { styles } = useStyles();
   const debouncedSearch = useDebounce(searchQuery, 500);
-
   const {
     data,
     isLoading,
     isError,
     isSuccess,
+    fetchNextPage,
+    hasNextPage,
     isFetchingNextPage,
-    bottomBoundaryRef,
-  } = useInfiniteScroll(searchType, debouncedSearch);
+  } = useInfiniteQuery(
+    ["search", searchType, debouncedSearch],
+    ({ pageParam = 1 }) => fetchData(searchType, debouncedSearch, pageParam),
+    {
+      getNextPageParam: (lastPage, allPages) => {
+        if (lastPage && lastPage.length > 0) {
+          return allPages.length + 1;
+        }
+        return null;
+      },
+    }
+  );
+
+  const { bottomBoundaryRef } = useInfiniteScroll(
+    () => hasNextPage && !isFetchingNextPage && fetchNextPage()
+  );
 
   const inputLength = debouncedSearch.length >= 3;
   return (
